@@ -4,11 +4,13 @@ export const Container = styled.div`
   width: 60px;
   height: 60px;
   border-radius: 10px;
-  margin: 30px 0 35px 0;
+  margin: 30px 5px 35px 5px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: white;
   cursor: pointer;
+  transition: background 0.3s, color 0.3s;
 
   p {
     color: #AEB2B8;

@@ -42,6 +42,7 @@ export const Background = styled.div`
 
   @media(min-width: 720px) {
       max-height: 450px;
+      border-radius: 10px 0 0 10px;
 
       img {
         max-width: 462px;
@@ -129,7 +130,7 @@ export const TextBox = styled.div`
 
   @media(min-width: 720px) {
     img {
-      max-width: 36px;
+      max-width: 30px;
     }
   }
 
