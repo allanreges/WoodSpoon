@@ -13,7 +13,7 @@ export const Container = styled.div`
   transition: background 0.3s, color 0.3s;
 
   p {
-    color: #AEB2B8;
+    color: #aeb2b8;
     margin: 0;
     font-size: 28px;
     font-weight: 400;
@@ -22,11 +22,10 @@ export const Container = styled.div`
   ${props =>
     props.activeButton &&
     css`
-      background: #3BB300;
+      background: #3bb300;
 
       p {
         color: #fff;
       }
-  `}
-
+    `}
 `;

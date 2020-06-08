@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useMemo } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import { Container, Title, Background, MealOptions, SelectBox, ButtonsBox, TextBox, PriceTag, Content, PriceBox, MealSelects } from './styles'
@@ -32,8 +32,7 @@ const ComboMenu = () => {
 
   useEffect(() => {
     if (data && !activePlan) {
-      peopleGroups()
-      quantityGroups()
+      setOptions()
       setFirstPlan()
     }
     if (activePlan) {
@@ -42,16 +41,15 @@ const ComboMenu = () => {
 
   }, [data, activePlan])
 
-  const peopleGroups = useCallback(() => {
-    const groups = []
-    data.listPlans.map(item => groups.push(item.numberOfPeople))
-    setNumberOfPeople([...new Set(groups)])
-  })
-
-  const quantityGroups = useCallback(() => {
-    const groups = []
-    data.listPlans.map(item => groups.push(item.weeklyRecipes))
-    setWeeklyRecipes([...new Set(groups)])
+  const setOptions = useCallback(() => {
+    const numberOfPeople = []
+    const weeklyRecipes = []
+    data.listPlans.map(item => {
+      numberOfPeople.push(item.numberOfPeople)
+      weeklyRecipes.push(item.weeklyRecipes)
+    })
+    setNumberOfPeople([...new Set(numberOfPeople)].sort())
+    setWeeklyRecipes([...new Set(weeklyRecipes)].sort())
   })
 
   const setFirstPlan = useCallback(() => {
@@ -65,18 +63,10 @@ const ComboMenu = () => {
   })
 
   function handleSelection(value, type) {
-    if (type === 'numberOfPeople') {
-      setActivePlan((prevState) => ({
-        ...prevState,
-        numberOfPeople: value,
-      }));
-    }
-    if (type === 'weeklyRecipes') {
-      setActivePlan((prevState) => ({
-        ...prevState,
-        weeklyRecipes: value,
-      }));
-    }
+    setActivePlan((prevState) => ({
+      ...prevState,
+      [type]: value,
+    }));
   }
 
   function findPlan() {
