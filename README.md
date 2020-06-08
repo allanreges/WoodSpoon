@@ -1,8 +1,8 @@
-<h1>WOODSPOON</h1>
+<h1>WoodSpoon</h1>
 
 This project was built with React, React Hooks and Graphql
 
-<h1>To Run:</h1>
+<h6>To Run:</h6>
 
 <b>yarn</b>
 
